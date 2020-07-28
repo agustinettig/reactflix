@@ -7,7 +7,11 @@ const LogoImage = styled.img.attrs({
   src: logo,
   alt: 'Reactflix logo',
 })`
+    max-width: 168px;
     height: 40px;
+    @media (max-width: 800px) {
+        max-width: 160px;
+    }
 `;
 
 export default (props) => {
