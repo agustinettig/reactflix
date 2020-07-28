@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo.png';
 
 const LogoImage = styled.img.attrs({
@@ -15,10 +16,11 @@ const LogoImage = styled.img.attrs({
 `;
 
 export default (props) => {
-  const href = { props };
+  // eslint-disable-next-line react/prop-types
+  const { to } = props;
   return (
-    <a href={href}>
+    <Link to={to}>
       <LogoImage />
-    </a>
+    </Link>
   );
 };
