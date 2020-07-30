@@ -38,9 +38,11 @@ const CategoryRegister = () => {
   const [categories, setCategories] = useState([]);
   const [value, setValue] = useState(initialValue);
 
-  const URL = 'http://localhost:8080/categories';
-
   useEffect(() => {
+    const URL = window.location.href.includes('localhost')
+      ? 'http://localhost:8080/categories'
+      : 'https://agreactflix.herokuapp.com/categories';
+
     fetch(URL).then(async (response) => {
       if (response.ok) {
         const categoryList = await response.json();
@@ -111,12 +113,14 @@ const CategoryRegister = () => {
           <Column mobile="12" tablet="6" desktop="6">
             <h1>Categories</h1>
 
-            { categories.lenght === 0
+            {
+                categories.length === 0
                 && (
                 <div>
                   <Spinner />
                 </div>
-                )}
+                )
+}
 
             <ul>
               {categories.map((category) => (
