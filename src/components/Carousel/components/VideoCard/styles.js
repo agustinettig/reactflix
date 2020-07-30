@@ -19,6 +19,7 @@ export const VideoCardContainer = styled.a`
   justify-content: center;
   padding: 16px;
   margin: 5px;
+  border: 2px solid;
 
   transition: transform .3s;
 
@@ -38,7 +39,7 @@ export const VideoCardContainer = styled.a`
     left:0;
     right:0;
     text-align:center;
-    padding-top: 25%;
+    padding-top: 23%;
 }
 
   &:hover:after {

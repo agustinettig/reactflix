@@ -8,9 +8,8 @@ export const Title = styled.h3`
   margin-bottom: 16px;
   display: inline-block;
   line-height: 1; 
-  border-bottom-width: 4px;
+  border-bottom-width: 3px;
   border-bottom-style: solid;
-  border-radius: 6px;
 
   @media (max-width: 800px) {
     font-size: 18px;
