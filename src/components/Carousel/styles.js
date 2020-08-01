@@ -8,8 +8,6 @@ export const Title = styled.h3`
   margin-bottom: 16px;
   display: inline-block;
   line-height: 1; 
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
 
   @media (max-width: 800px) {
     font-size: 18px;
@@ -17,14 +15,11 @@ export const Title = styled.h3`
   }
 `;
 
-export const ExtraLink = styled.a`
+export const Description = styled.span`
   margin-left: 16px;
   text-decoration: none;
   transition: opacity .3s;
-  &:hover,
-  &:focus {
-    opacity: .5;
-  }
+  
   @media (max-width: 800px) {
     display: block;
     margin-bottom: 16px;

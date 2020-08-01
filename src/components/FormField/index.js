@@ -4,12 +4,17 @@ import styled, { css } from 'styled-components';
 
 const FormFieldWrapper = styled.div`
   position: relative;
+  margin-bottom: 20px;
   textarea {
     min-height: 150px;
   }
-  input[type="color"] {
-    padding-left: 65px;
-  }
+`;
+
+const ValidationError = styled.span`
+  display: block;
+  color: #d93025;
+  font-size: 16px;
+  margin-top: 5px;
 `;
 
 const Label = styled.label``;
@@ -46,7 +51,6 @@ const Input = styled.input`
   border-bottom: 4px solid #53585D;
   
   padding: 16px 16px;
-  margin-bottom: 45px;
   
   resize: none;
   border-radius: 4px;
@@ -55,7 +59,7 @@ const Input = styled.input`
   &:focus {
     border-bottom-color: var(--primary);
   }
-  &:focus:not([type='color']) + ${Label.Text} {
+  &:focus + ${Label.Text} {
     transform: scale(.6) translateY(-10px);
   }
   ${({ value }) => {
@@ -70,24 +74,28 @@ const Input = styled.input`
 `;
 
 const FormField = ({
-  label, type, name, value, onChange,
+  label, type, name, value, onChange, onBlur, touched, error,
 }) => {
   const isTypeTextArea = type === 'textarea';
   const tag = isTypeTextArea ? 'textarea' : 'input';
 
+  const id = `id_${name}`;
   return (
     <FormFieldWrapper>
-      <Label>
+      <Label htmlFor={id}>
         <Input
           as={tag}
+          id={id}
           type={type}
           value={value}
           name={name}
           onChange={onChange}
+          onBlur={onBlur}
         />
         <Label.Text>
           {label}
         </Label.Text>
+        {touched && error && <ValidationError>{error}</ValidationError>}
       </Label>
     </FormFieldWrapper>
   );
@@ -97,6 +105,9 @@ FormField.defaultProps = {
   type: 'text',
   value: '',
   onChange: () => {},
+  onBlur: () => {},
+  touched: false,
+  error: undefined,
 };
 
 FormField.propTypes = {
@@ -105,7 +116,9 @@ FormField.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
   onChange: PropTypes.func,
-
+  onBlur: PropTypes.func,
+  touched: PropTypes.bool,
+  error: PropTypes.string,
 };
 
 export default FormField;

@@ -6,6 +6,8 @@ import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import { Container, Row, Column } from '../../../components/Grid';
 import Spinner from '../../../components/Spinner';
+import categoryRepository from '../../../repositories/category';
+import useForm from '../../../hooks/useForm';
 
 const SubmitButton = styled.button`
       color: var(--white);
@@ -29,79 +31,75 @@ const SubmitButton = styled.button`
   `;
 
 const CategoryRegister = () => {
-  const initialValue = {
+  const initialValues = {
     name: '',
     description: '',
-    color: '#000000',
   };
 
+  function validate(values) {
+    const errors = {};
+    if (values.name.length < 1) {
+      errors.name = 'Name is required';
+    }
+    return errors;
+  }
+
+  async function onSubmit() {
+    try {
+      const category = await categoryRepository.create(form.values);
+      setCategories([
+        ...categories,
+        category,
+      ]);
+      form.clearValues();
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    }
+  }
+
+  const form = useForm({ initialValues, validate, onSubmit });
   const [categories, setCategories] = useState([]);
-  const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
-    const URL = window.location.href.includes('localhost')
-      ? 'http://localhost:8080/categories'
-      : 'https://agreactflix.herokuapp.com/categories';
-
-    fetch(URL).then(async (response) => {
-      if (response.ok) {
-        const categoryList = await response.json();
-        setCategories(categoryList);
-        return;
+    async function fetchAll() {
+      try {
+        setCategories(await categoryRepository.getAll());
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err);
       }
-      throw new Error('Não foi possível pegar os dados');
-    });
+    }
+    fetchAll();
   }, []);
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    setCategories([
-      ...categories,
-      value,
-    ]);
-    setValue(initialValue);
-  }
-
-  function handleChange(event) {
-    const { target } = event;
-    setValue({
-      ...value,
-      [target.getAttribute('name')]: target.value,
-    });
-  }
 
   return (
     <PageDefault>
       <Container>
         <Row>
-          <Column mobile="12" tablet="6" desktop="6">
+          <Column sm="12" md="6">
             <h1>
               New Category
             </h1>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={form.handleSubmit}>
 
               <FormField
                 label="Name"
                 name="name"
-                value={value.name}
-                onChange={handleChange}
+                value={form.values.name}
+                onBlur={form.handleBlur}
+                onChange={form.handleChange}
+                touched={form.touched.name}
+                error={form.errors.name}
               />
 
               <FormField
-                label="Descrption"
+                label="Description"
                 type="textarea"
                 name="description"
-                value={value.description}
-                onChange={handleChange}
-              />
-
-              <FormField
-                label="Color"
-                type="color"
-                name="color"
-                value={value.color}
-                onChange={handleChange}
+                value={form.values.description}
+                onChange={form.handleChange}
               />
 
               <SubmitButton backgroundColor="#aaa">
@@ -110,7 +108,7 @@ const CategoryRegister = () => {
               <Link to="/">Cancel</Link>
             </form>
           </Column>
-          <Column mobile="12" tablet="6" desktop="6">
+          <Column sm="12" md="6">
             <h1>Categories</h1>
 
             {
@@ -120,11 +118,11 @@ const CategoryRegister = () => {
                   <Spinner />
                 </div>
                 )
-}
+            }
 
             <ul>
               {categories.map((category) => (
-                <li key="category.id">
+                <li key={category.id}>
                   {category.name}
                 </li>
               ))}

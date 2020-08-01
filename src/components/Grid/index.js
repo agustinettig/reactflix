@@ -40,14 +40,15 @@ export const Column = styled.div`
       padding: .25rem;
       min-height: 1px;
       box-sizing: border-box;
-  
+      
       @media only screen and (max-width:768px) {
-          ${({ mobile }) => mobile && getGridWidth(mobile)}
+          ${({ sm }) => sm && getGridWidth(sm)}
       }
       @media only screen and (min-width:768px) {
-          ${({ tablet }) => tablet && getGridWidth(tablet)}
+          ${({ md }) => md && getGridWidth(md)}
       }
       @media only screen and (min-width:1000px) {
-          ${({ desktop }) => desktop && getGridWidth(desktop)}
+          ${({ lg }) => lg && getGridWidth(lg)}
       }
+      
   `;

@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 export const VideoCardContainer = styled.a`
-  border-radius: 4px;
+  border-radius: 2px;
   text-decoration: none;
   overflow: hidden;
   cursor: pointer;
@@ -19,7 +19,6 @@ export const VideoCardContainer = styled.a`
   justify-content: center;
   padding: 16px;
   margin: 5px;
-  border: 2px solid;
 
   transition: transform .3s;
 
@@ -40,7 +39,7 @@ export const VideoCardContainer = styled.a`
     right:0;
     text-align:center;
     padding-top: 23%;
-}
+  }
 
   &:hover:after {
     background-color: rgba(0,0,0,0.5);
