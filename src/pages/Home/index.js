@@ -22,7 +22,7 @@ function Home() {
   }, []);
 
   return (
-    <PageDefault mainPadding="0" background="#141414">
+    <PageDefault newVideo="true" mainPadding="0" background="#141414">
 
       {
         categoryList.length === 0 && (

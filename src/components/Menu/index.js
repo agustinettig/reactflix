@@ -5,9 +5,10 @@ import './styles.css';
 import Logo from '../Logo';
 import Button from '../Button';
 
-export default () => (
+// eslint-disable-next-line react/prop-types
+export default ({ newVideo }) => (
   <nav className="Menu">
     <Logo to="/" />
-    <Button mobile="true" as={Link} to="/register/video">New video</Button>
+    {newVideo && <Button mobile="true" as={Link} to="/register/video">New video</Button>}
   </nav>
 );

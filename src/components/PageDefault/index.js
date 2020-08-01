@@ -15,10 +15,12 @@ const Main = styled.main`
   ${({ background }) => css`background-color: ${background}`};
 `;
 
-// eslint-disable-next-line react/prop-types
-const PageDefault = ({ children, mainPadding, background }) => (
+const PageDefault = ({
+  // eslint-disable-next-line react/prop-types
+  children, mainPadding, background, newVideo,
+}) => (
   <>
-    <Menu />
+    <Menu newVideo={newVideo} />
     <Main mainPadding={mainPadding} background={background}>
       {children}
     </Main>
