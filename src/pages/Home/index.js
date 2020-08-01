@@ -5,8 +5,7 @@ import categoryRepository from '../../repositories/category';
 import Spinner from '../../components/Spinner';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
-import Menu from '../../components/Menu';
-import Footer from '../../components/Footer';
+import PageDefault from '../../components/PageDefault';
 
 function Home() {
   const [categoryList, setCategoryList] = useState([]);
@@ -23,8 +22,7 @@ function Home() {
   }, []);
 
   return (
-    <>
-      <Menu />
+    <PageDefault mainPadding="0" background="#141414">
 
       {
         categoryList.length === 0 && (
@@ -34,6 +32,8 @@ function Home() {
 
       {
         categoryList.map((category, index) => {
+          if (!category.videos || category.videos.length === 0) { return false; }
+
           if (index === 0) {
             return (
               <div key={category.id}>
@@ -60,8 +60,7 @@ function Home() {
 
       }
 
-      <Footer />
-    </>
+    </PageDefault>
   );
 }
 

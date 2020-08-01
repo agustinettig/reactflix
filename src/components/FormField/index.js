@@ -42,7 +42,7 @@ const Input = styled.input`
   color: #F5F5F5;
   display: block;
   width: 100%;
-  height: 57px;
+  height: 60px;
   font-size: 18px;
   
   outline: 0;
@@ -65,7 +65,42 @@ const Input = styled.input`
   ${({ value }) => {
     const hasValue = value.length > 0;
     return hasValue && css`
-        &:not([type='color']) + ${Label.Text} {
+        & + ${Label.Text} {
+          transform: scale(.6) translateY(-10px);
+        }
+      `;
+  }
+}
+`;
+
+const Select = styled.select`
+  background: #53585D;
+  color: #F5F5F5;
+  display: block;
+  width: 100%;
+  height: 60px;
+  font-size: 18px;
+  
+  outline: 0;
+  border: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid #53585D;
+  
+  padding: 16px 16px;
+  
+  resize: none;
+  border-radius: 4px;
+  transition: border-color .3s;
+  
+  &:focus {
+    border-bottom-color: var(--primary);
+  }
+  &:focus + ${Label.Text} {
+    transform: scale(.6) translateY(-10px);
+  }
+  ${({ value }) => {
+    const hasValue = value.length > 0;
+    return hasValue && css`& + ${Label.Text} {
           transform: scale(.6) translateY(-10px);
         }
       `;
@@ -74,28 +109,46 @@ const Input = styled.input`
 `;
 
 const FormField = ({
-  label, type, name, value, onChange, onBlur, touched, error,
+  label, type, name, value, onChange, onBlur, touched, error, options,
 }) => {
   const isTypeTextArea = type === 'textarea';
-  const tag = isTypeTextArea ? 'textarea' : 'input';
+  const isSelect = type === 'select';
+  const textTag = isTypeTextArea ? 'textarea' : 'input';
 
   const id = `id_${name}`;
   return (
     <FormFieldWrapper>
       <Label htmlFor={id}>
-        <Input
-          as={tag}
-          id={id}
-          type={type}
-          value={value}
-          name={name}
-          onChange={onChange}
-          onBlur={onBlur}
-        />
+        {isSelect ? (
+          <Select
+            id={id}
+            type={type}
+            value={value}
+            name={name}
+            onChange={onChange}
+            onBlur={onBlur}
+          >
+            <option value=""> </option>
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>{option.text}</option>
+            ))}
+
+          </Select>
+        ) : (
+          <Input
+            as={textTag}
+            id={id}
+            type={type}
+            value={value}
+            name={name}
+            onChange={onChange}
+            onBlur={onBlur}
+          />
+        )}
         <Label.Text>
           {label}
         </Label.Text>
-        {touched && error && <ValidationError>{error}</ValidationError>}
+        {(touched && error && <ValidationError>{error}</ValidationError>)}
       </Label>
     </FormFieldWrapper>
   );
@@ -108,17 +161,19 @@ FormField.defaultProps = {
   onBlur: () => {},
   touched: false,
   error: undefined,
+  options: [],
 };
 
 FormField.propTypes = {
   label: PropTypes.string.isRequired,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.oneOf(PropTypes.string, PropTypes.number),
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   touched: PropTypes.bool,
   error: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default FormField;

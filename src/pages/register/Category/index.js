@@ -1,34 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
+import styled from 'styled-components';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import { Container, Row, Column } from '../../../components/Grid';
+import { ListWrapper, ListItem } from '../../../components/SimpleList';
 import Spinner from '../../../components/Spinner';
+import Button from '../../../components/Button';
 import categoryRepository from '../../../repositories/category';
 import useForm from '../../../hooks/useForm';
-
-const SubmitButton = styled.button`
-      color: var(--white);
-      border: 1px solid var(--white);
-      background-color: #53585D;
-      box-sizing: border-box;
-      cursor: pointer;
-      padding: 16px 24px;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      outline: none;
-      border-radius: 5px;
-      text-decoration: none;
-      display: inline-block;
-      transition: opacity .3s;
-      &:hover,
-      &:focus {
-          opacity: .5;
-      }
-  `;
+import useAlert from '../../../hooks/useAlert';
 
 const CategoryRegister = () => {
   const initialValues = {
@@ -38,7 +20,7 @@ const CategoryRegister = () => {
 
   function validate(values) {
     const errors = {};
-    if (values.name.length < 1) {
+    if (values.name.trim().length < 1) {
       errors.name = 'Name is required';
     }
     return errors;
@@ -52,26 +34,60 @@ const CategoryRegister = () => {
         category,
       ]);
       form.clearValues();
+      showMessage({
+        type: alertType.success,
+        title: 'Success',
+        message: 'Category registered successfully',
+      });
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err);
+      showMessage({
+        type: alertType.danger,
+        title: 'Error',
+        message: 'There was an error saving the category',
+      });
     }
   }
 
   const form = useForm({ initialValues, validate, onSubmit });
   const [categories, setCategories] = useState([]);
+  const { alertType, showMessage, alert } = useAlert({});
 
   useEffect(() => {
     async function fetchAll() {
       try {
         setCategories(await categoryRepository.getAll());
       } catch (err) {
-        // eslint-disable-next-line no-console
-        console.log(err);
+        showMessage({
+          type: alertType.danger,
+          title: 'Error',
+          message: 'There was an error fetching the categories',
+        });
       }
     }
     fetchAll();
+    // eslint-disable-next-line
   }, []);
+
+  async function remove(category) {
+    try {
+      await categoryRepository.remove(category.id);
+      const newCategoryList = categories.filter((cat) => cat.id !== category.id);
+      setCategories([
+        ...newCategoryList,
+      ]);
+      showMessage({
+        type: alertType.success,
+        title: 'Success',
+        message: 'Category removed successfully',
+      });
+    } catch (err) {
+      showMessage({
+        type: alertType.danger,
+        title: 'Error',
+        message: 'There was an error removing the category',
+      });
+    }
+  }
 
   return (
     <PageDefault>
@@ -82,14 +98,16 @@ const CategoryRegister = () => {
               New Category
             </h1>
 
+            {alert()}
+
             <form onSubmit={form.handleSubmit}>
 
               <FormField
                 label="Name"
                 name="name"
                 value={form.values.name}
-                onBlur={form.handleBlur}
                 onChange={form.handleChange}
+                onBlur={form.handleBlur}
                 touched={form.touched.name}
                 error={form.errors.name}
               />
@@ -102,10 +120,12 @@ const CategoryRegister = () => {
                 onChange={form.handleChange}
               />
 
-              <SubmitButton backgroundColor="#aaa">
+              <Button addCss="background-color: var(--primary); margin-right: 20px;">
                 Save
-              </SubmitButton>
-              <Link to="/">Cancel</Link>
+              </Button>
+              <Button as={Link} to="/">
+                Cancel
+              </Button>
             </form>
           </Column>
           <Column sm="12" md="6">
@@ -120,18 +140,41 @@ const CategoryRegister = () => {
                 )
             }
 
-            <ul>
+            <ListWrapper>
               {categories.map((category) => (
-                <li key={category.id}>
+                <ListItem key={category.id}>
                   {category.name}
-                </li>
+                  <ActionIcon color="#c22323" onClick={() => remove(category)}>x</ActionIcon>
+                </ListItem>
               ))}
-            </ul>
+            </ListWrapper>
           </Column>
         </Row>
       </Container>
     </PageDefault>
   );
 };
+
+const ActionIcon = styled.button`
+    background: transparent;
+    border: transparent;
+    float: right;
+    cursor: pointer;
+    height: 20px;
+    width: 30px;
+    font-weight: 700;
+    text-shadow: 0 1px 0 #1a1a1a;
+    font-size: 18px;
+    margin-bottom: 5px;    
+    height: 100%;
+
+
+    ${({ color }) => `color: ${color}`};
+
+    &:hover {
+        border: 1px solid var(--grayMedium);
+        border-radius: 5px;
+    }
+`;
 
 export default CategoryRegister;

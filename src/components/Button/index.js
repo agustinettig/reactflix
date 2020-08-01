@@ -14,11 +14,15 @@ export default styled.button`
     text-decoration: none;
     display: inline-block;
     transition: opacity .3s;
+    margin-bottom: 10px;
     &:hover,
     &:focus {
         opacity: .5;
     }
 
+    ${({ addCss }) => addCss}
+
+    ${({ mobile }) => mobile && `
     @media (max-width: 800px) { 
             position: fixed;
             left: 0;
@@ -27,6 +31,7 @@ export default styled.button`
             background: var(--primary);
             border-radius: 0;
             border: 0;
-            text-align: center;        
-    }
+            text-align: center;   
+            margin-bottom: 0px;     
+    }`}
 `;

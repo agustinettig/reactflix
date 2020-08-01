@@ -1,17 +1,15 @@
 import React from 'react';
 import { FooterBase } from './styles';
+import imersao from '../../assets/img/imersao.svg';
 
 function Footer() {
   return (
     <FooterBase>
-      <a href="https://www.alura.com.br/">
-        <img src="https://www.alura.com.br/assets/img/alura-logo-white.1570550707.svg" alt="Logo Alura" />
-      </a>
+      <img style={{ maxHeight: '50px', margin: '0px' }} src={imersao} alt="Logo Imersao" />
       <p>
-        Orgulhosamente criado durante a
-        {' '}
+        Made during the "Imersão React" event by
         <a href="https://www.alura.com.br/">
-          Imersão React da Alura
+          Alura
         </a>
       </p>
     </FooterBase>
