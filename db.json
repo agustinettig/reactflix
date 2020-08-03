@@ -2,175 +2,87 @@
   "categories": [
     {
       "id": 1,
-      "name": "Front End"
+      "name": "Sony"
     },
     {
       "id": 2,
-      "name": "Back End"
-    },
-    {
-      "id": 3,
-      "name": "Data Science e Inteligência Artificial"
-    },
-    {
-      "id": 4,
-      "name": "Filmes"
-    },
-    {
-      "id": 5,
-      "name": "Games"
+      "name": "Nintendo"
     }
   ],
   "videos": [
     {
       "id": 1,
       "categoryId": 1,
-      "name": "SEO com React",
-      "url": "https://www.youtube.com/watch?v=c8mVlakBESE"
+      "name": "Marvel's Spider-Man",
+      "url": "https://www.youtube.com/watch?v=8pR0o2fGyHg"
     },
     {
       "id": 2,
       "categoryId": 1,
-      "name": "O que faz uma desenvolvedora front-end? #HipstersPontoTube",
-      "url": "https://www.youtube.com/watch?v=ZY3-MFxVdEw"
+      "name": "Horizon Zero Dawn",
+      "url": "https://www.youtube.com/watch?v=Fkg5UVTsKCE"
     },
     {
-      "id": 3,
-      "categoryId": 1,
-      "name": "Componentização com VanillaJS #AluraMais",
-      "url": "https://www.youtube.com/watch?v=LatCKpcOMak"
+        "id": 3,
+        "categoryId": 1,
+        "name": "Ghost of Tsushima",
+        "url": "https://www.youtube.com/watch?v=MUz539AeC5Y"
     },
     {
-      "id": 4,
-      "categoryId": 1,
-      "name": "Pare de chutar e aprenda a display: inline #01",
-      "url": "https://www.youtube.com/watch?v=5PS6ku8NzIE"
-    },
+        "id": 4,
+        "categoryId": 1,
+        "name": "Gof of War",
+        "url": "https://www.youtube.com/watch?v=K0u_kAWLJOA"
+    },   
     {
-      "id": 5,
-      "categoryId": 1,
-      "name": "Template String: Interpolando strings com JavaScript #AluraMais",
-      "url": "https://www.youtube.com/watch?v=ORI_HTXaIw0"
-    },
+        "id": 5,
+        "categoryId": 1,
+        "name": "Final Fantasy VII Remake",
+        "url": "https://www.youtube.com/watch?v=ERgrFVhL-n4"
+    },     
     {
-      "id": 6,
-      "categoryId": 1,
-      "name": "Qual é a melhor linguagem de programação? #HipstersPontoTube",
-      "url": "https://www.youtube.com/watch?v=Uh-GNH-t89w"
-    },
+        "id": 6,
+        "categoryId": 1,
+        "name": "Uncharted 4: A Thief's End",
+        "url": "https://www.youtube.com/watch?v=y1Rx-Bbht5E"
+    },  
     {
       "id": 7,
-      "categoryId": 1,
-      "name": "Novidades do Angular v9",
-      "url": "https://www.youtube.com/watch?v=34uHo7hFmG0"
+      "categoryId": 2,
+      "name": "The Legend of Zelda: Breath of the Wild",
+      "url": "https://www.youtube.com/watch?v=zw47_q9wbBE"
     },
     {
       "id": 8,
       "categoryId": 2,
-      "name": "PERCURSO em NÍVEL em ÁRVORE BINÁRIA | Estruturas de Dados #14",
-      "url": "https://www.youtube.com/watch?v=UOK7nS2E9xM"
+      "name": "The Legend of Zelda: Link's Awakening",
+      "url": "https://www.youtube.com/watch?v=_U-_XfDGgDw"
+      
     },
     {
       "id": 9,
       "categoryId": 2,
-      "name": "Coders4Tips - S01E04: GitHub CLI - Uma Nova Experiência no Github!",
-      "url": "https://www.youtube.com/watch?v=6o6-bKOZOEY"
+      "name": "Xenoblade Chronicles Definitive Edition",
+      "url": "https://www.youtube.com/watch?v=tVfMySwUibQ"
+      
     },
     {
       "id": 10,
       "categoryId": 2,
-      "name": "Programei 4 robôs que criam vídeos para mim no YouTube",
-      "url": "https://www.youtube.com/watch?v=kjhu1LEmRpY"
+      "name": "Xenoblade Chronicles 2",
+      "url": "https://www.youtube.com/watch?v=Xjpao-nD5YU"
     },
     {
       "id": 11,
       "categoryId": 2,
-      "name": "API: Dicionário do Programador",
-      "url": "https://www.youtube.com/watch?v=vGuqKIRWosk"
+      "name": "Pokémon Let's Go",
+      "url": "https://www.youtube.com/watch?v=7Wtfkl-g-VE"
     },
     {
       "id": 12,
       "categoryId": 2,
-      "name": "Usando Git Direito",
-      "url": "https://www.youtube.com/watch?v=6OokP-NE49k"
-    },
-    {
-      "id": 13,
-      "categoryId": 3,
-      "name": "Teste de Turing",
-      "url": "https://www.youtube.com/watch?v=BaPGU4JWa34"
-    },
-    {
-      "id": 14,
-      "categoryId": 3,
-      "name": "O que é Data Science?",
-      "url": "https://www.youtube.com/watch?v=5b9Z8toVaAU&t=9s"
-    },
-    {
-      "id": 15,
-      "categoryId": 3,
-      "name": "Melhor forma de aprender Python",
-      "url": "https://www.youtube.com/watch?v=Gojqw9BQ5qY"
-    },
-    {
-      "id": 16,
-      "categoryId": 3,
-      "name": "Como ingressar no mercado de Data Science?",
-      "url": "https://www.youtube.com/watch?v=gxyjGmOV540"
-    },
-    {
-      "id": 17,
-      "categoryId": 4,
-      "name": "Interestellar",
-      "url": "https://www.youtube.com/watch?v=frD_IiY_A3E"
-    },
-    {
-      "id": 18,
-      "categoryId": 4,
-      "name": "Gattaca",
-      "url": "https://www.youtube.com/watch?v=Dl0tYLbrhhs"
-    },
-    {
-      "id": 19,
-      "categoryId": 4,
-      "name": "A Chegada",
-      "url": "https://www.youtube.com/watch?v=rNciXGzYZms"
-    },
-    {
-      "id": 20,
-      "categoryId": 4,
-      "name": "Feitiço do Tempo",
-      "url": "https://www.youtube.com/watch?v=zi8d69P9NvI"
-    },
-    {
-      "id": 21,
-      "categoryId": 5,
-      "name": "Final Fantasy 7",
-      "url": "https://www.youtube.com/watch?v=I_ATSCTnUD8"
-    },
-    {
-      "id": 22,
-      "categoryId": 5,
-      "name": "Assassins Creed Valhalla",
-      "url": "https://www.youtube.com/watch?v=KDfdjB9uL0U"
-    },
-    {
-      "id": 23,
-      "categoryId": 5,
-      "name": "God of War 4",
-      "url": "https://www.youtube.com/watch?v=FyIwEFXOcaE"
-    },
-    {
-      "id": 24,
-      "categoryId": 5,
-      "name": "Resident Evil 8",
-      "url": "https://www.youtube.com/watch?v=JSapXD9vxYA"
-    },
-    {
-      "name": "Evil Parrot",
-      "url": "https://www.youtube.com/watch?v=YE8PTMSFMUg",
-      "categoryId": 1,
-      "id": 27
+      "name": "Mario Kart 8",
+      "url": "https://www.youtube.com/watch?v=tKlRN2YpxRE"
     }
   ]
 }
